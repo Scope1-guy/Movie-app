@@ -52,10 +52,11 @@ export function LoginPage() {
             <div className="auth-field">
               <label>Email</label>
               <input
-                type="text"
-                placeholder="ayanfe1@yahoo.com"
-                value={(e) => setUserEmail(e.target.value)}
-              />
+  type="text"
+  placeholder="ayanfe1@yahoo.com"
+  value={userEmail}
+  onChange={(e) => setUserEmail(e.target.value)}
+/>
 
               <label>Password</label>
               <input
