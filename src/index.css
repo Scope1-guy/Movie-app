@@ -1,0 +1,572 @@
+body {
+  margin: 0;
+  /* padding: 0; */
+  padding: 20px 30px;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.start-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+.start-page div {
+  width: 400px;
+}
+.start-page div h1 {
+  font-size: 35px;
+}
+.start-page div p {
+  font-size: 22px;
+}
+.start-page div button {
+  width: 100%;
+  background-color: rgb(255, 255, 17);
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  padding: 10px;
+}
+
+/* AUTHETICATION PAGE */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.auth-card {
+  border: 1px solid rgb(76, 72, 116);
+  border-radius: 20px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 420px;
+}
+.auth-tabs {
+  display: flex;
+  gap: 0;
+  background-color: rgb(13, 13, 32);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+.auth-tab {
+  flex: 1;
+  padding: 9px 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.auth-tab.active {
+  background-color: rgb(0, 90, 150);
+  color: #fff;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.auth-field label {
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.auth-field input {
+  padding: 12px 14px;
+  /* background-color: rgb(215, 215, 240); */
+  border: 1px solid rgb(76, 72, 116);
+  border-radius: 10px;
+  color: black;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.auth-field input:focus {
+  border-color: rgb(31, 118, 177);
+}
+.auth-submit {
+  padding: 13px;
+  background-color: rgb(31, 118, 177);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 4px;
+}
+
+.auth-submit:hover {
+  background-color: rgb(0, 100, 160);
+}
+
+/* SIDEBAR STYLING */
+.search-box {
+  display: flex;
+  align-items: center;
+
+  background: #d8c4b4;
+
+  border-radius: 50px;
+
+  padding: 14px 20px;
+
+  margin-bottom: 25px;
+}
+
+.search-box span {
+  color: white;
+
+  margin-right: 10px;
+}
+
+.search-box input {
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 17px;
+
+  width: 100%;
+}
+
+.search-box input::placeholder {
+  color: white;
+}
+
+/* Sections */
+
+.section {
+  background: #a78b79;
+
+  padding: 20px;
+
+  border-radius: 30px;
+
+  margin-bottom: 25px;
+}
+
+.section-title {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.section-title h2 {
+  color: white;
+
+  font-size: 22px;
+}
+
+.section-title a {
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 14px;
+}
+
+/* Trailer Card */
+
+.trailer-card {
+  position: relative;
+
+  height: 170px;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  margin-bottom: 20px;
+}
+
+.trailer-card img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+}
+
+.text {
+  position: absolute;
+
+  left: 15px;
+
+  bottom: 15px;
+
+  width: 70%;
+
+  color: white;
+}
+
+.trailer-card button {
+  position: absolute;
+
+  right: 15px;
+
+  bottom: 15px;
+
+  width: 50px;
+
+  height: 50px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: white;
+
+  cursor: pointer;
+
+  font-size: 18px;
+}
+
+/* Continue Watching */
+
+.watch-card {
+  display: flex;
+
+  align-items: center;
+
+  margin-top: 20px;
+}
+
+.watch-card img {
+  width: 80px;
+
+  height: 80px;
+
+  border-radius: 15px;
+
+  object-fit: cover;
+
+  margin-right: 15px;
+}
+
+.watch-card div {
+  flex: 1;
+}
+
+.watch-card h3 {
+  color: white;
+
+  margin-bottom: 6px;
+}
+
+.watch-card p {
+  color: #eee;
+
+  font-size: 14px;
+}
+
+.watch-card button {
+  width: 50px;
+
+  height: 50px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: white;
+
+  cursor: pointer;
+}
+
+/* MAIN PAGE STYLING */
+.movie-app {
+  display: flex;
+}
+.sidebar {
+  width: 400px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  border-right: 1px solid rgb(76, 72, 116);
+  padding: 20px;
+}
+.main-page {
+  margin-left: 450px;
+  flex: 1;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page-header-navbar {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+.page-header-nav-list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  gap: 120px;
+}
+
+/* MOVIE PREVIEW CONTAINER  */
+
+.container {
+  /* width: 1200px; */
+  width: 100%;
+  height: 650px;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+.container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.75)
+  );
+}
+
+.content {
+  position: absolute;
+  left: 50px;
+  bottom: 60px;
+  width: 430px;
+  color: white;
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 18px;
+  background: white;
+  color: #555;
+  border-radius: 50px;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.genres {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.genres span {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 8px 18px;
+  border-radius: 40px;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 42px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #ddd;
+  line-height: 1.7;
+  margin-bottom: 35px;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.watch {
+  background: white;
+  color: black;
+  border: none;
+  padding: 15px 35px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.list {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  padding: 15px 35px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.slider {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  display: flex;
+  gap: 15px;
+}
+
+.slider button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+/* MOVIE LIST STYLING */
+
+.movie-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.movies {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 320px;
+  height: 420px;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+.card:hover img {
+  transform: scale(1.08);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.92),
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.1)
+  );
+}
+
+.content {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  color: white;
+}
+
+.genre {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 14px;
+  color: #ddd;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.content a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.play {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+
+  width: 60px;
+  height: 60px;
+
+  border: none;
+  border-radius: 50%;
+  background: white;
+  color: black;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.play:hover {
+  transform: scale(1.1);
+}
