@@ -62,7 +62,8 @@ export function LoginPage() {
               <input
                 type="password"
                 placeholder="********"
-                value={(e) => setUserPassword(e.target.value)}
+                value={userPassword}
+onChange={(e) => setUserPassword(e.target.value)}
               />
             </div>
           )}
