@@ -22,6 +22,8 @@ export default function LoginPage() {
     }
   }
 
+  function handleCreateAccountSubmit() {}
+
   return (
     <div className="auth-page">
       <div className="auth-card">
@@ -45,37 +47,39 @@ export default function LoginPage() {
 
         <form
           className="auth-form"
-          onSubmit={mode === "login" ? handleLoginSubmit : ""}
+          onSubmit={
+            mode === "login" ? handleLoginSubmit : handleCreateAccountSubmit
+          }
         >
           <h2>{mode === "signup" ? "Sign up to ScopeHub" : "Welcome Back"}</h2>
           {mode === "signup" && (
             <div className="auth-field">
               <label>Email</label>
-              <input
-                type="text"
-                placeholder="ayanfe1@yahoo.com"
-                value={userEmail}
-                onChange={(e) => setUserEmail(e.target.value)}
-              />
+              <input type="text" placeholder="ayanfe1@yahoo.com" />
 
               <label>Password</label>
-              <input
-                type="password"
-                placeholder="********"
-                value={userPassword}
-                onChange={(e) => setUserPassword(e.target.value)}
-              />
+              <input type="password" placeholder="********" />
             </div>
           )}
 
           <div className="auth-field">
             <label>Email</label>
-            <input type="text" placeholder="ayanfe1@yahoo.com" />
+            <input
+              type="text"
+              placeholder="ayanfe1@yahoo.com"
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
           </div>
 
           <div className="auth-field">
             <label>Password</label>
-            <input type="password" placeholder="••••••••" />
+            <input
+              type="password"
+              placeholder="••••••••"
+              value={userPassword}
+              onChange={(e) => setUserPassword(e.target.value)}
+            />
           </div>
 
           <button type="submit" className="auth-submit">

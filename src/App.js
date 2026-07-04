@@ -37,15 +37,13 @@ function AppContent() {
 
   console.log(page);
   return (
-    <UserProvider>
-      <>
-        {page === "start" && <StartPage />}
+    <>
+      {page === "start" && <StartPage />}
 
-        {page === "login" && <LoginPage />}
+      {page === "login" && <LoginPage />}
 
-        {page === "movie-app" && <MovieApp />}
-      </>
-    </UserProvider>
+      {page === "movie-app" && <MovieApp />}
+    </>
   );
 }
 
