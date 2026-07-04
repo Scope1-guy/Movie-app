@@ -1,12 +1,20 @@
-import { useEffect, useState } from "react";
-import { LoginPage } from "./component/login-page";
-import { SideBar } from "./component/sidebar";
+import { useContext } from "react"; // useContext hook is used to get the value stored inside a Context like "UserContext.Provider"
 import { UserContext, UserProvider } from "./UserContext";
+import LoginPage from "./component/login-page";
+import { SideBar } from "./component/sidebar";
 
 const pageHeader = ["Home", "TV Series", "Animation", "Mistry", "More"];
 
 export default function App() {
-  const [page, setPage] = useState("start");
+  return (
+    <UserProvider>
+      <AppContent />
+    </UserProvider>
+  );
+}
+
+function AppContent() {
+  const { page } = useContext(UserContext); //useContext(UserContext); means open the UserContext cupboard and take whatever is in the curly bracket here from the cupboard, in this case, page
 
   // const [movie, setMovie] = useState([]);
 
@@ -27,10 +35,11 @@ export default function App() {
   //   fetchMovie();
   // }, []);
 
+  console.log(page);
   return (
     <UserProvider>
       <>
-        {page === "start" && <StartPage setPage={setPage} />}
+        {page === "start" && <StartPage />}
 
         {page === "login" && <LoginPage />}
 
@@ -40,13 +49,38 @@ export default function App() {
   );
 }
 
-function StartPage({ setPage }) {
+// function AppContent() {
+//   const { page } = useContext(UserContext);
+
+//   console.log("AppContent page:", page);
+
+//   return (
+//     <div>
+//       <h1>Current Page: {page}</h1>
+
+//       {page === "start" && <StartPage />}
+//       {page === "login" && <h2>LOGIN PAGE WORKING</h2>}
+//     </div>
+//   );
+// }
+
+function StartPage() {
+  const { setPage, page } = useContext(UserContext);
+
   return (
     <div className="start-page">
       <div>
         <h1>Watch All Movies</h1>
         <p>Download and watch offline wherever you are</p>
-        <button onClick={() => setPage("login")}>Enter Now</button>
+        <button
+          onClick={() => {
+            console.log("Before", page);
+            setPage("login");
+            console.log("setPage called");
+          }}
+        >
+          Enter Now
+        </button>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../UserContext";
 import { savedUsers } from "../data/users";
 
-export function LoginPage() {
+export default function LoginPage() {
   const [mode, setMode] = useState("login");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -52,18 +52,18 @@ export function LoginPage() {
             <div className="auth-field">
               <label>Email</label>
               <input
-  type="text"
-  placeholder="ayanfe1@yahoo.com"
-  value={userEmail}
-  onChange={(e) => setUserEmail(e.target.value)}
-/>
+                type="text"
+                placeholder="ayanfe1@yahoo.com"
+                value={userEmail}
+                onChange={(e) => setUserEmail(e.target.value)}
+              />
 
               <label>Password</label>
               <input
                 type="password"
                 placeholder="********"
                 value={userPassword}
-onChange={(e) => setUserPassword(e.target.value)}
+                onChange={(e) => setUserPassword(e.target.value)}
               />
             </div>
           )}
