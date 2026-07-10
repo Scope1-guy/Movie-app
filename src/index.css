@@ -328,6 +328,8 @@ code {
   height: 100vh;
   border-right: 1px solid rgb(76, 72, 116);
   padding: 20px;
+
+  overflow-y: scroll;
 }
 .main-page {
   margin-left: 450px;

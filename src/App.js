@@ -1,5 +1,6 @@
 import { useContext } from "react"; // useContext hook is used to get the value stored inside a Context like "UserContext.Provider"
 import { UserContext, UserProvider } from "./UserContext";
+import { MovieContext, MovieProvider } from "./MovieContext";
 import LoginPage from "./component/login-page";
 import { SideBar } from "./component/sidebar";
 
@@ -16,25 +17,6 @@ export default function App() {
 function AppContent() {
   const { page } = useContext(UserContext); //useContext(UserContext); means open the UserContext cupboard and take whatever is in the curly bracket here from the cupboard, in this case, page
 
-  // const [movie, setMovie] = useState([]);
-
-  // const API_KEY = "5ab6e8c382c50fafdfa888334f448158";
-  // const popularUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
-
-  // useEffect(() => {
-  //   async function fetchMovie() {
-  //     try {
-  //       const response = await fetch(popularUrl);
-  //       const data = await response.json();
-  //       // setMovie(data);
-  //       console.log(data.results);
-  //     } catch (err) {
-  //       console.log("Error fetching movies:", err);
-  //     }
-  //   }
-  //   fetchMovie();
-  // }, []);
-
   console.log(page);
   return (
     <>
@@ -42,28 +24,13 @@ function AppContent() {
 
       {page === "login" && <LoginPage />}
 
-      {page === "movie-app" && <MovieApp />}
+      {page === "movie-app" && <MoviePage />}
     </>
   );
 }
 
-// function AppContent() {
-//   const { page } = useContext(UserContext);
-
-//   console.log("AppContent page:", page);
-
-//   return (
-//     <div>
-//       <h1>Current Page: {page}</h1>
-
-//       {page === "start" && <StartPage />}
-//       {page === "login" && <h2>LOGIN PAGE WORKING</h2>}
-//     </div>
-//   );
-// }
-
 function StartPage() {
-  const { setPage, page } = useContext(UserContext);
+  const { setPage } = useContext(UserContext);
 
   return (
     <div className="start-page">
@@ -72,15 +39,21 @@ function StartPage() {
         <p>Download and watch offline wherever you are</p>
         <button
           onClick={() => {
-            console.log("Before", page);
             setPage("login");
-            console.log("setPage called");
           }}
         >
           Enter Now
         </button>
       </div>
     </div>
+  );
+}
+
+function MoviePage() {
+  return (
+    <MovieProvider>
+      <MovieApp />
+    </MovieProvider>
   );
 }
 
@@ -98,6 +71,7 @@ function MovieApp() {
 }
 
 function NavBar() {
+  const { user } = useContext(UserContext);
   return (
     <header className="page-header">
       <nav className="page-header-navbar">
@@ -111,7 +85,7 @@ function NavBar() {
       </nav>
 
       <div>
-        <h3>Current User</h3>
+        <h3>{user.username}</h3>
         {/* <p>User email</p> */}
       </div>
     </header>
@@ -119,120 +93,86 @@ function NavBar() {
 }
 
 function MainMoviePreview() {
+  const { trending } = useContext(MovieContext);
+
   return (
-    <div className="container">
-      <img src="images/spiderman.jpg" alt="Spider-Man" />
+    <>
+      {trending && (
+        <div className="container">
+          <img
+            src={`https://image.tmdb.org/t/p/w500${trending.poster_path}`}
+            alt={trending.title}
+          />
 
-      <div className="overlay"></div>
+          <div className="overlay"></div>
 
-      <div className="content">
-        <span className="badge">Now Trending</span>
+          <div className="content">
+            <span className="badge">Now Trending</span>
 
-        <div className="genres">
-          <span>Action</span>
-          <span>Adventure</span>
+            <div className="genres">
+              <span>Action</span>
+              <span>Adventure</span>
+            </div>
+
+            <div>
+              <h1>{trending.title} </h1>
+              <h2>Across The Spider-Verse</h2>
+            </div>
+
+            <p>{trending.overview}</p>
+
+            <div className="buttons">
+              <button className="watch">▶ Watch</button>
+
+              <button className="list">+ Watchlist</button>
+            </div>
+          </div>
+
+          <div className="slider">
+            <button>&lt;</button>
+            <button>&gt;</button>
+          </div>
         </div>
-
-        <div>
-          <h1>Spider-Man </h1>
-          <h2>Across The Spider-Verse</h2>
-        </div>
-
-        <p>
-          2023 animated film following Miles Morales as he embarks on a journey
-          across the multiverse while encountering different Spider-People.
-        </p>
-
-        <div className="buttons">
-          <button className="watch">▶ Watch</button>
-
-          <button className="list">+ Watchlist</button>
-        </div>
-      </div>
-
-      <div className="slider">
-        <button>&lt;</button>
-        <button>&gt;</button>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 
 function MovieList() {
+  const { movie, genres } = useContext(MovieContext);
+
   return (
     <div className="movie-list">
       <div className="movies">
-        <div className="card">
-          <img src="images/flash.jpg" alt="The Flash" />
+        {movie.map((film) => {
+          const genreNames = film.genre_ids.map((id) => {
+            const genre = genres.find((genre) => genre.id === id);
+            return genre?.name;
+          });
 
-          <div className="overlay"></div>
+          return (
+            <div className="card" key={film.id}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                alt={film.title}
+              />
 
-          <div className="content">
-            <span className="genre">Fantasy</span>
+              <div className="overlay"></div>
 
-            <h2>The Flash (2023)</h2>
+              <div className="content">
+                <span className="genre">{genreNames.join(", ")}</span>
 
-            <p>Barry Allen travels through time and changes the future.</p>
+                <h2>{film.title}</h2>
 
-            {/* <a href="#">See more...</a> */}
-          </div>
+                <p>Barry Allen travels through time and changes the future.</p>
 
-          <button className="play">▶</button>
-        </div>
+                <p>See more...</p>
+              </div>
 
-        <div className="card">
-          <img src="images/manifest.jpg" alt="Manifest" />
-
-          <div className="overlay"></div>
-
-          <div className="content">
-            <span className="genre">Mystery</span>
-
-            <h2>Manifest</h2>
-
-            <p>Passengers return after years and uncover strange secrets.</p>
-
-            {/* <a href="#">See more...</a> */}
-          </div>
-
-          <button className="play">▶</button>
-        </div>
-
-        <div className="card">
-          <img src="images/elemental.jpg" alt="Elemental" />
-
-          <div className="overlay"></div>
-
-          <div className="content">
-            <span className="genre">Animation</span>
-
-            <h2>Elemental</h2>
-
-            <p>Fire and water discover friendship in Element City.</p>
-
-            {/* <a href="#">See more...</a> */}
-          </div>
-
-          <button className="play">▶</button>
-        </div>
-
-        <div className="card">
-          <img src="images/interstellar.jpg" alt="Interstellar" />
-
-          <div className="overlay"></div>
-
-          <div className="content">
-            <span className="genre">Sci-Fi</span>
-
-            <h2>Interstellar</h2>
-
-            <p>Explorers travel through space to save humanity.</p>
-
-            {/* <a href="#">See more...</a> */}
-          </div>
-
-          <button className="play">▶</button>
-        </div>
+              {/* <button className="play">▶</button> */}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

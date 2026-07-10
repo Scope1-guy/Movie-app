@@ -1,4 +1,8 @@
+import { useContext } from "react"; // useContext hook is used to get the value stored inside a Context like "UserContext.Provider"
+import { MovieContext } from "../MovieContext";
+
 export function SideBar() {
+  const { upcoming } = useContext(MovieContext);
   return (
     <div className="sidebar">
       {/* Search */}
@@ -20,29 +24,22 @@ export function SideBar() {
 
         {/* <!-- Card --> */}
 
-        <div class="trailer-card">
-          <img src="images/last-kingdom.jpg" alt="ii" />
+        {upcoming.map((movie) => (
+          <div class="trailer-card" key={movie.id}>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+              alt={movie.title}
+            />
 
-          <div class="overlay"></div>
+            <div class="overlay"></div>
 
-          <div class="text">
-            <h3>The Last Kingdom: Seven Kings Must Die</h3>
+            <div class="text">
+              <h3>{movie.title}</h3>
+            </div>
+
+            <button>▶</button>
           </div>
-
-          <button>▶</button>
-        </div>
-
-        <div class="trailer-card">
-          <img src="images/mario.jpg" alt="ii" />
-
-          <div class="overlay"></div>
-
-          <div class="text">
-            <h3>The Super Mario Bros. Movie</h3>
-          </div>
-
-          <button>▶</button>
-        </div>
+        ))}
       </section>
 
       {/* <!-- Continue --> */}

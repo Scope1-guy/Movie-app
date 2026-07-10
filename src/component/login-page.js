@@ -7,7 +7,7 @@ export default function LoginPage() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
-  const { setUser } = useContext(UserContext);
+  const { setUser, setPage } = useContext(UserContext);
 
   function handleLoginSubmit(e) {
     e.preventDefault();
@@ -16,6 +16,8 @@ export default function LoginPage() {
       userEmail === savedUsers.email &&
       userPassword === savedUsers.password
     ) {
+      setUser(savedUsers);
+      setPage("movie-app");
       console.log("login succefully");
     } else {
       console.log("error");
